@@ -1,4 +1,4 @@
 {
-  "presets": ["kcd-scripts/babel"],
-  "plugins": ["emotion"]
+  "plugins": ["emotion"],
+  "presets": ["kcd-scripts/babel"]
 }
