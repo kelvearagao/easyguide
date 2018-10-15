@@ -1,57 +1,101 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [@easyguide/stepper](#easyguidestepper)
+- [@easyguide/select](#easyguideselect)
   - [Install](#install)
-  - [Usage](#usage)
+  - [Usage simple select](#usage-simple-select)
+  - [Usage select with live search](#usage-select-with-live-search)
   - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# @easyguide/stepper
+# @easyguide/select
 
-> Camponents stepper ui
+> Camponents select ui
 
-[![NPM](https://img.shields.io/npm/v/@easyguide/stepper.svg)](https://www.npmjs.com/package/@easyguide/stepper) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@easyguide/select.svg)](https://www.npmjs.com/package/@easyguide/select) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save @easyguide/stepper
+npm install --save @easyguide/select
 ```
 
-## Usage
+## Usage simple select
 
 ```jsx
-import React, {Component} from 'react'
-
-import Stepper, {Step} from '@easyguide/stepper'
+import React, {Fragment} from 'react'
+import Select from '@easyguide/select'
 
 class Example extends Component {
   render() {
+    const data = [{key: 1, value: 'Option 1'}, {key: 2, value: 'Option 2'}]
+
     return (
-      <Stepper>
-        <Step>
-          {({previous, next}) => (
+      <Fragment>
+        <Select
+          data={data}
+          onChange={value => console.log(`value:${value}`)}
+          render={item => (
             <div>
-              <h1>First</h1>
-              <p>description</p>
-              <button onClick={previous}>prev</button>
-              <button onClick={next}>next</button>
+              <span>
+                <img
+                  style={{
+                    marginRight: 10,
+                    verticalAlign: 'bottom',
+                  }}
+                  width="20"
+                  height="20"
+                  src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/04.Bank-512.png"
+                />
+                <span>{item.value}</span>
+              </span>
             </div>
           )}
-        </Step>
-        <Step>
-          {({previous, next}) => (
+          renderListItem={item => `${item.key} - ${item.value}`}
+        />
+      </Fragment>
+    )
+  }
+}
+```
+
+## Usage select with live search
+
+```jsx
+import React, {Fragment} from 'react'
+import Select from '@easyguide/select'
+
+class Example extends Component {
+  render() {
+    const data = [{key: 1, value: 'Option 1'}, {key: 2, value: 'Option 2'}]
+
+    return (
+      <Fragment>
+        <Select
+          liveSearch
+          data={data}
+          placeholder="Digite uma opção"
+          onChange={value => console.log(`value:${value}`)}
+          renderListItem={item => `${item.key} - ${item.value}`}
+          render={item => (
             <div>
-              <h1>Second</h1>
-              <p>description</p>
-              <button onClick={previous}>prev</button>
-              <button onClick={next}>next</button>
+              <span>
+                <img
+                  style={{
+                    marginRight: 10,
+                    verticalAlign: 'bottom',
+                  }}
+                  width="20"
+                  height="20"
+                  src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/04.Bank-512.png"
+                />
+                <span>{item.value}</span>
+              </span>
             </div>
           )}
-        </Step>
-      </Stepper>
+        />
+      </Fragment>
     )
   }
 }
