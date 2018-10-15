@@ -24,7 +24,7 @@ export const tableHeadStyle = () => css`
     text-transform: uppercase;
     font-size: 12px;
     font-family: 'Rational-Medium';
-    font-weight: 500;
+    font-weight: bold;
     color: #adadad;
   }
 `
@@ -87,6 +87,8 @@ export const arrowBoxStyle = () => css`
 export const noWrapContainerStyle = () => css`
   display: flex;
   flex-wrap: nowrap;
+  font-family: 'Rational-Medium';
+  font-size: 12px;
 `
 
 export const tableSortLabelStyle = ({onClick}) =>

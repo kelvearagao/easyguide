@@ -6,7 +6,6 @@ import Table from '../Table'
 describe('<Table />', () => {
   it('should be rendered', () => {
     const {container} = render(<Table />)
-
     expect(container.firstChild.nodeName).toBe('TABLE')
   })
 })
