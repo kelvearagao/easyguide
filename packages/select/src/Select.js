@@ -18,28 +18,11 @@ import {
 const validateShowInput = x => x === true
 
 class Select extends Component {
-  wrapper = React.createRef()
   state = {
     isOpen: false,
     searchValue: '',
     selectedItem: this.props.selectedItem,
     cloneItem: this.props.selectedItem,
-  }
-
-  componentDidMount() {
-    window.addEventListener('click', this.closeMenuOutside, false)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.closeMenuOutside, false)
-  }
-
-  closeMenuOutside = e => {
-    const {wrapper, close} = this
-
-    if (!wrapper.current.contains(e.target)) {
-      close()
-    }
   }
 
   open = e => {
@@ -94,7 +77,7 @@ class Select extends Component {
       selectedItem: item,
       cloneItem: item
     }, () => {
-      onChange(item.value)
+      onChange(item)
     })
   }
 
@@ -109,6 +92,7 @@ class Select extends Component {
           autoFocus={isOpen}
           value={this.state.searchValue}
           placeholder={placeholder}
+          onBlur={this.close}
           onChange={event => this.setState({ searchValue: event.target.value })}
         />
       )
@@ -133,11 +117,16 @@ class Select extends Component {
       className,
       renderCustomListItem,
       renderListItem,
-      emptyListText
+      emptyListText,
+      liveSearch,
     } = this.props
 
     return (
-      <SelectWrapper className={className} innerRef={this.wrapper}>
+      <SelectWrapper
+        className={className}
+        tabIndex="0"
+        onBlur={() => !liveSearch && this.close()}
+      >
         <InputWrapper onClick={this.open}>
           {this.renderSelect()}
         </InputWrapper>
@@ -145,7 +134,7 @@ class Select extends Component {
           <Dropdown>
             <DropdownWrapper>
               {data.map(item =>
-                <DropdownItem key={item.key} onClick={() => this.selectItem(item)}>
+                <DropdownItem key={item.key} onMouseDown={() => this.selectItem(item)}>
                   {renderListItem(item)}
                 </DropdownItem>
               )}

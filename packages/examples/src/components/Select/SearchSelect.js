@@ -23,7 +23,7 @@ class SearchSelect extends Component {
           liveSearch
           data={data}
           placeholder="Digite uma opção"
-          onChange={value => console.log(`value:${value}`)}
+          onChange={item => console.log(`value:${item.value}`)}
           renderListItem={item => `${item.key} - ${item.name}`}
           render={item => (
             <div>

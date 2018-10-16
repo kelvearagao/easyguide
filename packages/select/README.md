@@ -35,7 +35,7 @@ class Example extends Component {
       <Fragment>
         <Select
           data={data}
-          onChange={value => console.log(`value:${value}`)}
+          onChange={item => console.log(`value:${item.value}`)}
           render={item => (
             <div>
               <span>
@@ -76,7 +76,7 @@ class Example extends Component {
           liveSearch
           data={data}
           placeholder="Digite uma opção"
-          onChange={value => console.log(`value:${value}`)}
+          onChange={item => console.log(`value:${item.value}`)}
           renderListItem={item => `${item.key} - ${item.value}`}
           render={item => (
             <div>

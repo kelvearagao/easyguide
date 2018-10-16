@@ -60,7 +60,9 @@ class SimpleSelect extends Component {
 
     return (
       <Button
-        onClick={() => {
+        onMouseDown={e => {
+          e.preventDefault()
+
           this.loadOptions()
         }}
       >
@@ -76,7 +78,7 @@ class SimpleSelect extends Component {
       <Fragment>
         <Select
           data={data}
-          onChange={value => console.log(`value:${value}`)}
+          onChange={item => console.log(`value:${item.value}`)}
           render={item => (
             <div>
               <span>

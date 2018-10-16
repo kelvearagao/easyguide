@@ -1,7 +1,7 @@
 import {css} from 'react-emotion'
 
 export const inputBaseStyle = () => css`
-  padding: 5px 10px;
+  padding: 5px 0;
   color: #322828;
   box-sizing: border-box;
   border-bottom: 1px solid #9B9B9B;
@@ -11,6 +11,10 @@ export const customSelectStyle = () => css`
   font-size: 16px;
   color: #322828;
   cursor: pointer;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const inputStyle = () => css`
@@ -48,11 +52,13 @@ export const inputWrapperStyle = () => css`
 
 export const selectWrapperStyle = () => css`
   position: relative;
+  width: 100%;
+  outline: none;
 `
 
 export const dropdownStyle = () => css`
   position: absolute;
-  top: 35px;
+  top: 45px;
   left: 0;
   z-index: 1;
   padding: 0;
@@ -100,10 +106,15 @@ export const dropdownWrapperStyle = () => css`
 
 export const dropdownItemStyle = () => css`
   display: block;
+  max-width: 100%;
+  padding: 5px 15px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
   cursor: pointer;
-  padding: 8px 15px;
   color: #322828;
-  font-size: 14px;
 
   &:hover {
     color: #3CCBDA;

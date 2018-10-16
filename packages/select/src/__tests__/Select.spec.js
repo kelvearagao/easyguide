@@ -46,7 +46,7 @@ describe('<Select />', () => {
     )
 
     fireEvent.click(rtl.getByText(placeholder))
-    fireEvent.click(rtl.getByText('Option 1'))
+    fireEvent.mouseDown(rtl.getByText('Option 1'))
 
     expect(rtl.getByText('Selected - 1')).toBeInTheDocument()
   })
@@ -107,7 +107,7 @@ describe('<Select />', () => {
   })
 
   it('should dispatch onChange with current value', () => {
-    const onChange = jest.fn(value => value)
+    const onChange = jest.fn(item => item)
     const rtl = render(
       <Select
         data={data}
@@ -117,9 +117,9 @@ describe('<Select />', () => {
     )
 
     fireEvent.click(rtl.getByText(placeholder))
-    fireEvent.click(rtl.getByText('Option 1'))
+    fireEvent.mouseDown(rtl.getByText('Option 1'))
     
     expect(rtl.getByText('Option 1')).toBeInTheDocument()
-    expect(onChange).toHaveBeenCalledWith('Option 1')
+    expect(onChange).toHaveBeenCalledWith(data[0])
   })
 })
