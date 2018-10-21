@@ -44,6 +44,7 @@ export const inputWrapperStyle = () => css`
   display: flex;
   flex-direction: row;
   align-items: center;
+  outline: none;
 
   & > *:first-child {
     flex: 1 1 auto;
