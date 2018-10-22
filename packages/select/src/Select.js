@@ -91,8 +91,8 @@ class Select extends Component {
           type="text"
           autoFocus={isOpen}
           value={this.state.searchValue}
+          onFocus={this.open}
           placeholder={placeholder}
-          onBlur={this.close}
           onChange={event => this.setState({ searchValue: event.target.value })}
         />
       )
@@ -118,16 +118,15 @@ class Select extends Component {
       renderCustomListItem,
       renderListItem,
       emptyListText,
-      liveSearch,
     } = this.props
 
     return (
-      <SelectWrapper
-        className={className}
-        tabIndex="0"
-        onBlur={() => !liveSearch && this.close()}
-      >
-        <InputWrapper onClick={this.open}>
+      <SelectWrapper className={className}>
+        <InputWrapper
+          tabIndex={0}
+          onClick={this.open}
+          onBlur={this.close}
+        >
           {this.renderSelect()}
         </InputWrapper>
         {isOpen && (
