@@ -1,7 +1,7 @@
 import React from 'react'
 import enhancer from './Icon.hoc'
 
-const Star = ({ color, borderColor = color, ...props }) => (
+const Star = ({color, borderColor = color, ...props}) => (
   <svg
     viewBox="0 0 40 38"
     xmlnsXlink="http://www.w3.org/1999/xlink"
