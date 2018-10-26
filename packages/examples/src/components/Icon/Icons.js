@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react'
-import Icon from '@easyguide/icon'
 import StarWithMedal from '@easyguide/icon/dist/StarWithMedal'
+import Star from '@easyguide/icon/dist/Star'
+
+const orange = '#E58F20'
 
 const Icons = () => (
   <Fragment>
-    <Icon name="star-with-medal" width={70} height={70} />
-    <StarWithMedal width={70} height={70} color="#E58F20" />
+    <StarWithMedal width={70} height={70} color={orange} />
+    <Star width={70} height={70} color={orange} />
   </Fragment>
 )
 
