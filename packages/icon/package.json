@@ -1,6 +1,6 @@
 {
   "name": "@easyguide/icon",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Icons",
   "author": "iamtchelo",
   "license": "MIT",
@@ -78,5 +78,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
 }
