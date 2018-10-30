@@ -78,6 +78,6 @@
     "dist"
   ],
   "dependencies": {
-    "@easyguide/icon": "^0.5.1"
+    "@easyguide/icon": "^0.5.2"
   }
 }
