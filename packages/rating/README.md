@@ -24,7 +24,7 @@ npm install --save @easyguide/rating
 
 ```jsx
 import React, {Fragment} from 'react'
-import Rating from '@easyguide/select'
+import Rating from '@easyguide/rating'
 
 class Example extends Component {
   render() {
