@@ -13,6 +13,7 @@ matrix:
     - env: PROJECT=packages/icon
     - env: PROJECT=packages/stepper
     - env: PROJECT=packages/select
+    - env: PROJECT=packages/rating
 
 script:
   - cd $PROJECT
