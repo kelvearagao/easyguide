@@ -1,17 +1,12 @@
 import {css} from 'react-emotion'
 import {FullSymbol, RatingCaption} from './elements'
 
-export const baseSymbolStyle = () => css`
-  cursor: pointer;
-`
-
 export const ratingWrapperStyle = () => css`
   display: flex;
   flex-direction: row-reverse;
 `
 
 export const fullSymbolStyle = () => css`
-  ${baseSymbolStyle};
   position: absolute;
   top: 0;
   left: 0;
@@ -22,7 +17,7 @@ export const fullSymbolStyle = () => css`
 `
 
 export const emptySymbolStyle = () => css`
-  ${baseSymbolStyle};
+  cursor: pointer;
 `
 
 export const ratingSelectedStyle = ({selected}) => selected && css`
