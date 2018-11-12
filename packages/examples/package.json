@@ -18,7 +18,7 @@
     "@easyguide/icon": "^0.6.0",
     "@easyguide/rating": "^0.6.0",
     "@easyguide/select": "^0.6.0",
-    "@easyguide/stepper": "^0.7.0",
+    "@easyguide/stepper": "^0.6.0",
     "@easyguide/table": "^0.6.0",
     "emotion": "^9.2.6",
     "lodash.random": "^3.2.0",
