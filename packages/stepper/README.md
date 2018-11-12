@@ -27,30 +27,25 @@ import React, {Component} from 'react'
 
 import Stepper, {Step} from '@easyguide/stepper'
 
+const Step = withStep(({ previous, next, activeStep }) => (
+  <section data-testid="step">
+    <h1>{activeStep}</h1>
+    <p>description</p>
+    <button onClick={previous} data-testid="step-previous-button">
+      previous
+    </button>
+    <button onClick={next} data-testid="step-next-button">
+      next
+    </button>
+  </section>
+))
+
 class Example extends Component {
   render() {
     return (
       <Stepper>
-        <Step>
-          {({previous, next}) => (
-            <div>
-              <h1>First</h1>
-              <p>description</p>
-              <button onClick={previous}>prev</button>
-              <button onClick={next}>next</button>
-            </div>
-          )}
-        </Step>
-        <Step>
-          {({previous, next}) => (
-            <div>
-              <h1>Second</h1>
-              <p>description</p>
-              <button onClick={previous}>prev</button>
-              <button onClick={next}>next</button>
-            </div>
-          )}
-        </Step>
+        <Step stepName="step 1" />
+        <Step stepName="step 2" />
       </Stepper>
     )
   }
