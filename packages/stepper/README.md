@@ -25,7 +25,7 @@ npm install --save @easyguide/stepper
 ```jsx
 import React, {Component} from 'react'
 
-import Stepper, {Step} from '@easyguide/stepper'
+import Stepper, {withStep} from '@easyguide/stepper'
 
 const Step = withStep(({ previous, next, activeStep }) => (
   <section data-testid="step">
