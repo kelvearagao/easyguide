@@ -1,4 +1,4 @@
 import Stepper from './Stepper'
-import Step from './Step'
+import withStep from './withStep'
 
-export {Step, Stepper as default}
+export {withStep, Stepper as default}
