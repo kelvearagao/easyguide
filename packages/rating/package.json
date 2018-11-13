@@ -1,6 +1,6 @@
 {
   "name": "@easyguide/rating",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Components rating ui",
   "author": "iamtchelo",
   "license": "MIT",
@@ -78,6 +78,6 @@
     "dist"
   ],
   "dependencies": {
-    "@easyguide/icon": "^0.7.0"
+    "@easyguide/icon": "^0.8.0"
   }
 }
