@@ -1,67 +1,66 @@
 import React, { Component } from 'react'
+import { createMemoryHistory } from 'history'
 import PropTypes from 'prop-types'
 
-const StepperContext = React.createContext({
-  activeStep: 0
-})
+const StepperContext = React.createContext()
 
 class Stepper extends Component {
   static Consumer = StepperContext.Consumer
 
-  findStepIndex = step => {
-    if (!step) {
-      return 0
-    }
+  get previousStep() {
+    return this.steps[this.steps.indexOf(this.state.activeStep) - 1]
+  }
 
-    return this.steps.findIndex(x => x === step)
+  get nextStep() {
+    return this.steps[this.steps.indexOf(this.state.activeStep) + 1]
   }
 
   previous = () => {
-    const currentStep = this.findStepIndex(this.state.activeStep)
-    if (currentStep === 0) {
-      return
+    if (this.previousStep) {
+      this.history.push(this.stepToPath(this.previousStep))
     }
-
-    this.setState({
-      activeStep: this.steps[currentStep - 1]
-    })
   }
 
   next = () => {
     const { finishCallback } = this.props
-    const currentStep = this.findStepIndex(this.state.activeStep)
 
-    if (currentStep === this.steps.length - 1) {
+    if (!this.nextStep) {
       finishCallback()
       return
     }
 
-    this.setState({
-      activeStep: this.steps[currentStep + 1]
-    })
+    this.history.push(this.stepToPath(this.nextStep))
   }
 
-  goTo = step => {
-    const targetStep = this.findStepIndex(step)
-    if (targetStep !== -1) {
-      this.setState({
-        activeStep: this.steps[targetStep]
-      })
-    }
+  stepToPath = stepName => `${this.props.basename}/${stepName}`
+
+  pathToStep = pathname => {
+    const pathStep = pathname.replace(`${this.props.basename}/`, '')
+    const [step] = this.steps.filter(stepName => stepName === pathStep)
+    return step || this.state.step
   }
 
   constructor(props) {
     super(props)
     this.steps = []
 
-    React.Children.map(this.props.children, (child, index) => {
-      const stepName = child.props.stepName ? child.props.stepName : index
-      this.steps.push(stepName)
+    React.Children.forEach(this.props.children, child => {
+      this.steps.push(child.props.stepName)
     })
 
     this.state = {
-      activeStep: this.steps[props.activeStep] || props.activeStep
+      activeStep: this.props.activeStep || this.steps[0]
     }
+
+    this.history = props.history || createMemoryHistory()
+    this.history.replace(this.stepToPath(this.state.activeStep))
+    this.unlisten = this.history.listen(({ pathname }) => {
+      this.setState({ activeStep: this.pathToStep(pathname) })
+    })
+  }
+
+  componentWillUnmount() {
+    this.unlisten()
   }
 
   render() {
@@ -71,14 +70,14 @@ class Stepper extends Component {
     const extraProps = {
       activeStep,
       previous: this.previous,
+      steps: this.steps,
       next: this.next,
-      goTo: this.goTo,
+      history: this.history,
       finishCallback
     }
 
-    const [child = null] = children.filter(({ props: { stepName } }, index) => {
-      const currentStep = activeStep || this.steps[activeStep]
-      return currentStep === stepName || currentStep === index
+    const [child = null] = children.filter(({ props: { stepName } }) => {
+      return activeStep === stepName
     })
 
     return (
@@ -90,13 +89,23 @@ class Stepper extends Component {
 }
 
 Stepper.propTypes = {
-  activeStep: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  basename: PropTypes.string,
+  activeStep: PropTypes.string,
   finishCallback: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  history: PropTypes.shape({
+    entries: PropTypes.array,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    listen: PropTypes.func,
+    location: PropTypes.object,
+    push: PropTypes.func,
+    replace: PropTypes.func
+  })
 }
 
 Stepper.defaultProps = {
-  activeStep: 0,
+  basename: '',
   finishCallback: () => {}
 }
 

@@ -28,61 +28,64 @@ describe('<Stepper />', () => {
   it('should render the first step as current', () => {
     const rtl = render(
       <Stepper>
-        <Step stepName="step 1" />
-        <Step stepName="step 2" />
+        <Step stepName="step-1" />
+        <Step stepName="step-2" />
       </Stepper>
     )
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 1')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-1')
   })
 
   it('should render the active step by props', () => {
     const rtl = render(
-      <Stepper activeStep="step 2">
-        <Step stepName="step 1" />
-        <Step stepName="step 2" />
+      <Stepper activeStep="step-2">
+        <Step stepName="step-1" />
+        <Step stepName="step-2" />
       </Stepper>
     )
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 2')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-2')
   })
 
   it('should go to the next step', () => {
     const rtl = render(
       <Stepper>
-        <Step stepName="step 1" />
-        <Step stepName="step 2" />
+        <Step stepName="step-1" />
+        <Step stepName="step-2" />
       </Stepper>
     )
 
     fireEvent(rtl.getByTestId('step-next-button'), eventClick)
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 2')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-2')
   })
 
   it('should go to the previous step', () => {
     const rtl = render(
-      <Stepper activeStep="step 2">
-        <Step stepName="step 1" />
-        <Step stepName="step 2" />
+      <Stepper activeStep="step-2">
+        <Step stepName="step-1" />
+        <Step stepName="step-2" />
       </Stepper>
     )
 
     fireEvent(rtl.getByTestId('step-previous-button'), eventClick)
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 1')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-1')
   })
 
   it('should go to the specific step', () => {
-    const StepGoTo = withStep(({ goTo, activeStep }) => (
+    const StepGoTo = withStep(({ history, activeStep }) => (
       <section data-testid="step">
         <h1>{activeStep}</h1>
         <p>description</p>
-        <button onClick={() => goTo('step 3')} data-testid="step-goto-button">
+        <button
+          onClick={() => history.push('step-3')}
+          data-testid="step-goto-button"
+        >
           go to step 3
         </button>
       </section>
@@ -90,24 +93,24 @@ describe('<Stepper />', () => {
 
     const rtl = render(
       <Stepper>
-        <StepGoTo stepName="step 1" />
-        <Step stepName="step 2" />
-        <Step stepName="step 3" />
+        <StepGoTo stepName="step-1" />
+        <Step stepName="step-2" />
+        <Step stepName="step-3" />
       </Stepper>
     )
 
     fireEvent(rtl.getByTestId('step-goto-button'), eventClick)
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 3')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-3')
   })
 
   it('should call finishCallback() on final step', () => {
     const finishCallback = jest.fn()
     const rtl = render(
       <Stepper finishCallback={finishCallback}>
-        <Step stepName="step 1" />
-        <Step stepName="step 2" />
+        <Step stepName="step-1" />
+        <Step stepName="step-2" />
       </Stepper>
     )
 
@@ -115,7 +118,7 @@ describe('<Stepper />', () => {
     fireEvent(rtl.getByTestId('step-next-button'), eventClick)
 
     expect(rtl.container.children).toHaveLength(1)
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 2')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-2')
     expect(finishCallback).toHaveBeenCalled()
   })
 
@@ -136,22 +139,22 @@ describe('<Stepper />', () => {
       <section data-testid="step">
         <h1>{activeStep}</h1>
         <Stepper finishCallback={next}>
-          <NestedStep stepName="inner step 1" />
-          <NestedStep stepName="inner step 2" />
+          <NestedStep stepName="inner-step-1" />
+          <NestedStep stepName="inner-step-2" />
         </Stepper>
       </section>
     ))
     const rtl = render(
       <Stepper>
-        <NestedStepper stepName="step 1" />
+        <NestedStepper stepName="step-1" />
       </Stepper>
     )
 
-    expect(rtl.getByTestId('step')).toHaveTextContent('step 1')
-    expect(rtl.getByTestId('inner-step')).toHaveTextContent('inner step 1')
+    expect(rtl.getByTestId('step')).toHaveTextContent('step-1')
+    expect(rtl.getByTestId('inner-step')).toHaveTextContent('inner-step-1')
 
     fireEvent(rtl.getByTestId('inner-step-next-button'), eventClick)
 
-    expect(rtl.getByTestId('inner-step')).toHaveTextContent('inner step 2')
+    expect(rtl.getByTestId('inner-step')).toHaveTextContent('inner-step-2')
   })
 })
