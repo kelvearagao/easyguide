@@ -16,20 +16,24 @@ class Stepper extends Component {
   }
 
   previous = () => {
+    const { onChange } = this.props
+
     if (this.previousStep) {
       this.history.push(this.stepToPath(this.previousStep))
+      onChange(this.previousStep)
     }
   }
 
   next = () => {
-    const { finishCallback } = this.props
+    const { onFinish, onChange } = this.props
 
     if (!this.nextStep) {
-      finishCallback()
+      onFinish()
       return
     }
 
     this.history.push(this.stepToPath(this.nextStep))
+    onChange(this.nextStep)
   }
 
   stepToPath = stepName => `${this.props.basename}/${stepName}`
@@ -65,7 +69,7 @@ class Stepper extends Component {
 
   render() {
     const { activeStep } = this.state
-    const { finishCallback } = this.props
+    const { onFinish } = this.props
     const children = React.Children.toArray(this.props.children)
     const extraProps = {
       activeStep,
@@ -73,7 +77,7 @@ class Stepper extends Component {
       steps: this.steps,
       next: this.next,
       history: this.history,
-      finishCallback
+      onFinish
     }
 
     const [child = null] = children.filter(({ props: { stepName } }) => {
@@ -91,7 +95,8 @@ class Stepper extends Component {
 Stepper.propTypes = {
   basename: PropTypes.string,
   activeStep: PropTypes.string,
-  finishCallback: PropTypes.func,
+  onFinish: PropTypes.func,
+  onChange: PropTypes.func,
   children: PropTypes.node,
   history: PropTypes.shape({
     entries: PropTypes.array,
@@ -106,7 +111,8 @@ Stepper.propTypes = {
 
 Stepper.defaultProps = {
   basename: '',
-  finishCallback: () => {}
+  onFinish: () => {},
+  onChange: () => {}
 }
 
 export default Stepper

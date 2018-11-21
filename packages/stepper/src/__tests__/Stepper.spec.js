@@ -105,10 +105,10 @@ describe('<Stepper />', () => {
     expect(rtl.getByTestId('step')).toHaveTextContent('step-3')
   })
 
-  it('should call finishCallback() on final step', () => {
-    const finishCallback = jest.fn()
+  it('should call onFinish() on final step', () => {
+    const onFinish = jest.fn()
     const rtl = render(
-      <Stepper finishCallback={finishCallback}>
+      <Stepper onFinish={onFinish}>
         <Step stepName="step-1" />
         <Step stepName="step-2" />
       </Stepper>
@@ -119,7 +119,7 @@ describe('<Stepper />', () => {
 
     expect(rtl.container.children).toHaveLength(1)
     expect(rtl.getByTestId('step')).toHaveTextContent('step-2')
-    expect(finishCallback).toHaveBeenCalled()
+    expect(onFinish).toHaveBeenCalled()
   })
 
   it('shoulD render inner steppers', () => {
@@ -138,7 +138,7 @@ describe('<Stepper />', () => {
     const NestedStepper = withStep(({ next, activeStep }) => (
       <section data-testid="step">
         <h1>{activeStep}</h1>
-        <Stepper finishCallback={next}>
+        <Stepper onFinish={next}>
           <NestedStep stepName="inner-step-1" />
           <NestedStep stepName="inner-step-2" />
         </Stepper>
