@@ -1,6 +1,6 @@
 {
   "name": "examples",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -18,7 +18,7 @@
     "@easyguide/icon": "^0.8.0",
     "@easyguide/rating": "^0.8.0",
     "@easyguide/select": "^0.8.0",
-    "@easyguide/stepper": "^0.8.0",
+    "@easyguide/stepper": "^0.8.1",
     "@easyguide/table": "^0.8.0",
     "emotion": "^9.2.6",
     "lodash.random": "^3.2.0",
