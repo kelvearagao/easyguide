@@ -20,7 +20,7 @@ class Stepper extends Component {
 
     if (this.previousStep) {
       this.history.push(this.stepToPath(this.previousStep))
-      onChange(this.previousStep)
+      onChange(this.previousStep, this.steps)
     }
   }
 
@@ -33,7 +33,7 @@ class Stepper extends Component {
     }
 
     this.history.push(this.stepToPath(this.nextStep))
-    onChange(this.nextStep)
+    onChange(this.nextStep, this.steps)
   }
 
   stepToPath = stepName => `${this.props.basename}/${stepName}`
