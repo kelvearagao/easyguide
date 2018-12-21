@@ -76,9 +76,5 @@
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "crocks": "^0.10.1",
-    "slug": "^0.9.1"
-  }
+  ]
 }
