@@ -1,101 +1,72 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [@easyguide/select](#easyguideselect)
+- [@easyguide/checkbox](#easyguidecheckbox)
   - [Install](#install)
-  - [Usage simple select](#usage-simple-select)
-  - [Usage select with live search](#usage-select-with-live-search)
+  - [Usage simple checkbox](#usage-simple-checkbox)
+  - [Usage checkbox with selected values](#usage-checkbox-with-selected-values)
   - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# @easyguide/select
+# @easyguide/checkbox
 
-> Camponents select ui
+> Camponents checkbox ui
 
-[![NPM](https://img.shields.io/npm/v/@easyguide/select.svg)](https://www.npmjs.com/package/@easyguide/select) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@easyguide/checkbox.svg)](https://www.npmjs.com/package/@easyguide/checkbox) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save @easyguide/select
+npm install --save @easyguide/checkbox
 ```
 
-## Usage simple select
+## Usage simple checkbox
 
 ```jsx
-import React, {Fragment} from 'react'
-import Select from '@easyguide/select'
+import React from 'react'
+import Checkbox from '@easyguide/checkbox'
 
 class Example extends Component {
   render() {
-    const data = [{key: 1, value: 'Option 1'}, {key: 2, value: 'Option 2'}]
+    const items = [
+      {value: 1, label: 'IPCA'},
+      {value: 2, label: 'CDI'},
+      {value: 3, label: 'PRÉ'},
+    ]
 
     return (
-      <Fragment>
-        <Select
-          data={data}
-          onChange={item => console.log(`value:${item.value}`)}
-          render={item => (
-            <div>
-              <span>
-                <img
-                  style={{
-                    marginRight: 10,
-                    verticalAlign: 'bottom',
-                  }}
-                  width="20"
-                  height="20"
-                  src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/04.Bank-512.png"
-                />
-                <span>{item.value}</span>
-              </span>
-            </div>
-          )}
-          renderListItem={item => `${item.key} - ${item.value}`}
-        />
-      </Fragment>
+      <Checkbox
+        label="Tipo de rentabilidade"
+        items={items}
+        onChange={value => console.log(value)}
+      />
     )
   }
 }
 ```
 
-## Usage select with live search
+## Usage checkbox with selected values
 
 ```jsx
-import React, {Fragment} from 'react'
-import Select from '@easyguide/select'
+import React from 'react'
+import Checkbox from '@easyguide/checkbox'
 
 class Example extends Component {
   render() {
-    const data = [{key: 1, value: 'Option 1'}, {key: 2, value: 'Option 2'}]
+    const items = [
+      {value: 1, label: 'IPCA'},
+      {value: 2, label: 'CDI'},
+      {value: 3, label: 'PRÉ'},
+    ]
 
     return (
-      <Fragment>
-        <Select
-          liveSearch
-          data={data}
-          placeholder="Digite uma opção"
-          onChange={item => console.log(`value:${item.value}`)}
-          renderListItem={item => `${item.key} - ${item.value}`}
-          render={item => (
-            <div>
-              <span>
-                <img
-                  style={{
-                    marginRight: 10,
-                    verticalAlign: 'bottom',
-                  }}
-                  width="20"
-                  height="20"
-                  src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/04.Bank-512.png"
-                />
-                <span>{item.value}</span>
-              </span>
-            </div>
-          )}
-        />
-      </Fragment>
+      <Checkbox
+        label="Tipo de rentabilidade"
+        items={items}
+        value={[1, 3]}
+        onChange={value => console.log(value)}
+      />
     )
   }
 }
