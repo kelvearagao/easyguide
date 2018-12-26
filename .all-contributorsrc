@@ -68,6 +68,22 @@
         "example",
         "review"
       ]
+    },
+    {
+      "login": "wellyal",
+      "name": "Wellyngton Amaral Leitão",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3047016?v=4",
+      "profile": "http://www.wellyngton.com/",
+      "contributions": [
+        "question",
+        "bug",
+        "code",
+        "doc",
+        "infra",
+        "talk",
+        "test",
+        "translation"
+      ]
     }
   ]
 }
