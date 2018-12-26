@@ -20,6 +20,7 @@
     "@easyguide/select": "^0.8.0",
     "@easyguide/stepper": "^0.8.2",
     "@easyguide/table": "^0.8.0",
+    "@easyguide/checkbox": "^0.0.1",
     "emotion": "^9.2.6",
     "lodash.random": "^3.2.0",
     "money-formatter": "^0.1.4",
