@@ -84,6 +84,20 @@
         "test",
         "translation"
       ]
+    },
+    {
+      "login": "lucasmoretti96",
+      "name": "Lucas Moretti",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/35340547?v=4",
+      "profile": "https://github.com/lucasmoretti96",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "talk",
+        "test",
+        "translation"
+      ]
     }
   ]
 }
