@@ -15,7 +15,8 @@
     "contributor:generate": "kcd-scripts contributors generate",
     "precommit": "kcd-scripts precommit",
     "start:storybook": "lerna exec --scope examples npm start",
-    "watch:packages": "lerna bootstrap && lerna exec --scope @easyguide/* npm start"
+    "watch:packages": "lerna bootstrap && lerna exec --scope @easyguide/* npm start",
+    "scaffold:package": "node scripts/scaffold-package.js"
   },
   "repository": {
     "type": "git",

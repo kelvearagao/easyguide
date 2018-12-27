@@ -5,6 +5,8 @@ import NativeRatio from '../../../../ratio/dist'
 const list = [
   { id: 1, name: 'Sim', status: 'inactive' },
   { id: 3, name: 'Talvez', status: 'inactive' },
+  { id: 4, name: 'Yep', status: 'inactive' },
+  { id: 5, name: 'Nope', status: 'inactive' },
   { id: 2, name: 'Não', status: 'active' }
 ]
 
