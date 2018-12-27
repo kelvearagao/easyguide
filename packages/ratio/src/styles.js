@@ -30,6 +30,7 @@ export const itemStyle = () => css`
   border: 1px solid #3ccbda;
   font-size: 14px;
   cursor: pointer;
+  outline: none;
 `
 
 export const roundedLeft = ({first}) =>
