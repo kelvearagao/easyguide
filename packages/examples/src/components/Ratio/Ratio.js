@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
+import {action} from '@storybook/addon-actions'
 import NativeRatio from '../../../../ratio/dist'
 
 const list = [
   { id: 1, name: 'Sim', status: 'inactive' },
-  { id: 2, name: 'Não', status: 'active' },
+  { id: 3, name: 'Talvez', status: 'inactive' },
+  { id: 2, name: 'Não', status: 'active' }
 ]
 
 class Ratio extends Component { 
@@ -12,12 +14,11 @@ class Ratio extends Component {
       <Fragment>
         <NativeRatio 
           listItems={list}
-          getActiveElement={this.getActivatedElement}
+          getActiveElement={action('Activated element')}
         />
       </Fragment>
     )
   }
 
-  getActivatedElement = item => console.log('Activated element', item)
 }
 export default Ratio
