@@ -15,6 +15,7 @@ matrix:
     - env: PROJECT=packages/select
     - env: PROJECT=packages/rating
     - env: PROJECT=packages/ratio
+    - env: PROJECT=packages/checkbox
 
 script:
   - cd $PROJECT
