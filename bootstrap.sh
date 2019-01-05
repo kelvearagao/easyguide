@@ -1,4 +1,5 @@
 #!/bin/sh
+# How to use: npm run package:new {PACKAGE_NAME}
 
 # Colors
 Red="\033[0;31m"
