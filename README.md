@@ -11,6 +11,20 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+#### Creating a new module in Storybook
+
+To create a new module, the name of component must be in lowercase letters. Run the commands below:
+
+```
+npm run watch:packages
+```
+
+And
+
+```
+npm run package:new component
+```
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
