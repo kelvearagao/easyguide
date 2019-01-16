@@ -4,7 +4,7 @@ import Checkbox from '@easyguide/checkbox/dist/Checkbox'
 
 const items = [
   { value: 1, label: 'IPCA' },
-  { value: 2, label: 'CDI' },
+  { value: 2, label: 'CDI', isActive: true },
   { value: 3, label: 'PRÉ' }
 ]
 
