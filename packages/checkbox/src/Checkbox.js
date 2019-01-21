@@ -31,7 +31,7 @@ class Checkbox extends Component {
 
   render() {
     const { label, className, disabled } = this.props
-    console.log('test')
+
     return (
       <Wrapper className={className}>
         {label && <Label>{label}</Label>}
