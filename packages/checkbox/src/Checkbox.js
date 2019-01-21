@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { string, array, any, arrayOf, shape, func } from 'prop-types'
+import isEqual from 'lodash.isequal'
 import { Wrapper, Label, TagsWrapper, Tag } from './elements'
 
 
@@ -13,16 +14,24 @@ class Checkbox extends Component {
       if(item.value === listItem.value){
         return { ...listItem, isActive: !item.isActive }
       } 
-      return listItem
+      return { ...listItem }
     })
 
-    this.props.onChange(newList)
-    this.setState({ list: newList })
+    this.setState(
+      { list: newList },
+      this.props.onChange(newList)
+    )
+  }
+
+  componentDidUpdate() {
+    if(!isEqual(this.props.items, this.state.list)){
+      this.setState({ list: this.props.items })  
+    }
   }
 
   render() {
-    const { label, className } = this.props
-
+    const { label, className, disabled } = this.props
+    console.log('test')
     return (
       <Wrapper className={className}>
         {label && <Label>{label}</Label>}
@@ -30,7 +39,7 @@ class Checkbox extends Component {
           {this.state.list.map(item => (
             <Tag
               key={item.value}
-              onClick={() => this.handleChange(item)}
+              onClick={() => !disabled && this.handleChange(item)}
               selected={item.isActive}
             >
               {item.label}
