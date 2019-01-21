@@ -79,6 +79,7 @@
   ],
   "dependencies": {
     "crocks": "^0.10.1",
+    "lodash.isempty": "^4.4.0",
     "lodash.isequal": "^4.5.0",
     "slug": "^0.9.1"
   }
