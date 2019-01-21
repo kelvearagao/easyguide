@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react'
+import isEqual from 'lodash.isequal'
+import isEmpty from 'lodash.isempty'
 import {safe} from 'crocks'
 import PropTypes from 'prop-types'
 import slug from 'slug'
@@ -23,6 +25,17 @@ class Select extends Component {
     searchValue: '',
     selectedItem: this.props.selectedItem,
     cloneItem: this.props.selectedItem,
+  }
+
+  componentDidUpdate() {
+    if(isEmpty(this.state.selectedItem) || isEmpty(this.props.selectedItem)) return
+    if(!isEqual(this.state.selectedItem, this.props.selectedItem)) {
+      console.log('bla')
+      this.setState({ 
+        selectedItem: this.props.selectedItem,
+        cloneItem: this.props.selectedItem
+      })  
+    }
   }
 
   open = e => {

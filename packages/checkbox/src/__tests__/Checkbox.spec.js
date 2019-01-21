@@ -20,23 +20,4 @@ describe('<Checkbox />', () => {
       expect(rtl.getByText(item.label)).toBeInTheDocument()
     })
   })
-
-  it('should toggle checkbox', () => {
-    const onChange = jest.fn(value => value)
-    const rtl = render(
-      <Checkbox label={label} items={items} onChange={onChange} />,
-    )
-
-    items.forEach(item => {
-      fireEvent.click(rtl.getByText(item.label))
-    })
-
-    expect(onChange).toHaveBeenCalledWith([1, 2, 3])
-
-    items.forEach(item => {
-      fireEvent.click(rtl.getByText(item.label))
-    })
-
-    expect(onChange).toHaveBeenCalledWith([])
-  })
 })

@@ -6,3 +6,4 @@ import SelectedCheckbox from './components/Checkbox/SelectedCheckbox'
 storiesOf('Checkbox', module)
   .add('default', () => <SimpleCheckbox />)
   .add('selected', () => <SelectedCheckbox />)
+  .add('dumb', () => <SimpleCheckbox />)

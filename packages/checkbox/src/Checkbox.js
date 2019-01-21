@@ -1,45 +1,46 @@
-import React, {Component} from 'react'
-import {string, array, any, arrayOf, shape, func} from 'prop-types'
-import {Wrapper, Label, TagsWrapper, Tag} from './elements'
+import React, { Component } from 'react'
+import { string, array, any, arrayOf, shape, func } from 'prop-types'
+import isEqual from 'lodash.isequal'
+import { Wrapper, Label, TagsWrapper, Tag } from './elements'
+
 
 class Checkbox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value,
+  state = {
+    list: this.props.items  
+  }
+
+  handleChange = item => {
+    const newList = this.state.list.map(listItem => {
+      if(item.value === listItem.value){
+        return { ...listItem, isActive: !item.isActive }
+      } 
+      return { ...listItem }
+    })
+
+    this.setState(
+      { list: newList },
+      this.props.onChange(newList)
+    )
+  }
+
+  componentDidUpdate() {
+    if(!isEqual(this.props.items, this.state.list)){
+      this.setState({ list: this.props.items })  
     }
   }
 
-  checkSelectedValue = value => this.state.value.some(v => v === value)
-
-  toggleValue = item => {
-    const {
-      state: {value},
-      props: {onChange},
-    } = this
-
-    // eslint-disable-next-line babel/no-unused-expressions
-    this.checkSelectedValue(item.value)
-      ? value.splice(value.indexOf(item.value), 1)
-      : value.push(item.value)
-
-    this.setState({value}, () => {
-      onChange(value)
-    })
-  }
-
   render() {
-    const {label, items, className} = this.props
+    const { label, className, disabled } = this.props
 
     return (
       <Wrapper className={className}>
         {label && <Label>{label}</Label>}
         <TagsWrapper>
-          {items.map(item => (
+          {this.state.list.map(item => (
             <Tag
               key={item.value}
-              onClick={() => this.toggleValue(item)}
-              selected={this.checkSelectedValue(item.value)}
+              onClick={() => !disabled && this.handleChange(item)}
+              selected={item.isActive}
             >
               {item.label}
             </Tag>
