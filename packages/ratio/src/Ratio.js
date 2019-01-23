@@ -23,6 +23,14 @@ class Ratio extends Component {
     };
   }
 
+  componentDidUpdate() {
+    if(!isEqual(this.props.listItem, this.state.listItems)){
+      this.setState({
+        listItems: this.props.listItems
+      })
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return !isEqual(
       nextProps.listItems, nextState.listItems
