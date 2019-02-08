@@ -49,7 +49,7 @@ class Stepper extends Component {
     this.steps = []
 
     React.Children.forEach(this.props.children, child => {
-      if (child.props) {
+      if (child && child.props) {
         this.steps.push(child.props.stepName)
       }
     })
