@@ -18,7 +18,7 @@ class Stepper extends Component {
   previous = () => {
     const { onChange } = this.props
 
-    if (this.previousStep == null) {
+    if (this.previousStep != null) {
       this.history.push(this.stepToPath(this.previousStep))
       onChange(this.previousStep, this.steps)
     }
