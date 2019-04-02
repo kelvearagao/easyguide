@@ -30,7 +30,6 @@ class Select extends Component {
   componentDidUpdate() {
     if(isEmpty(this.state.selectedItem) || isEmpty(this.props.selectedItem)) return
     if(!isEqual(this.state.selectedItem, this.props.selectedItem)) {
-      console.log('bla')
       this.setState({ 
         selectedItem: this.props.selectedItem,
         cloneItem: this.props.selectedItem
@@ -40,14 +39,13 @@ class Select extends Component {
 
   open = e => {
     e.stopPropagation()
-
     const {selectedItem} = this.state
     const {liveSearch} = this.props
 
-    this.setState({
-      isOpen: true,
+    this.setState(prev => ({
+      isOpen: !prev.isOpen,
       selectedItem: liveSearch ? {} : selectedItem
-    })
+    }))
   }
 
   close = () => {
