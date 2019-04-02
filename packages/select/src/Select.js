@@ -37,15 +37,21 @@ class Select extends Component {
     }
   }
 
-  open = e => {
+  toggle = e => {
     e.stopPropagation()
-    const {selectedItem} = this.state
+    const {selectedItem, isOpen} = this.state
     const {liveSearch} = this.props
 
-    this.setState(prev => ({
-      isOpen: !prev.isOpen,
+    if (isOpen && !liveSearch) {
+      this.close()
+
+      return;
+    }
+
+    this.setState({
+      isOpen: true,
       selectedItem: liveSearch ? {} : selectedItem
-    }))
+    })
   }
 
   close = () => {
@@ -102,7 +108,7 @@ class Select extends Component {
           type="text"
           autoFocus={isOpen}
           value={this.state.searchValue}
-          onFocus={this.open}
+          onFocus={this.toggle}
           placeholder={placeholder}
           onChange={event => this.setState({ searchValue: event.target.value })}
         />
@@ -135,7 +141,7 @@ class Select extends Component {
       <SelectWrapper className={className}>
         <InputWrapper
           tabIndex={0}
-          onClick={this.open}
+          onClick={this.toggle}
           onBlur={this.close}
         >
           {this.renderSelect()}
