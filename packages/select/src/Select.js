@@ -30,7 +30,6 @@ class Select extends Component {
   componentDidUpdate() {
     if(isEmpty(this.state.selectedItem) || isEmpty(this.props.selectedItem)) return
     if(!isEqual(this.state.selectedItem, this.props.selectedItem)) {
-      console.log('bla')
       this.setState({ 
         selectedItem: this.props.selectedItem,
         cloneItem: this.props.selectedItem
@@ -38,11 +37,16 @@ class Select extends Component {
     }
   }
 
-  open = e => {
+  toggle = e => {
     e.stopPropagation()
-
-    const {selectedItem} = this.state
+    const {selectedItem, isOpen} = this.state
     const {liveSearch} = this.props
+
+    if (isOpen && !liveSearch) {
+      this.close()
+
+      return;
+    }
 
     this.setState({
       isOpen: true,
@@ -104,7 +108,7 @@ class Select extends Component {
           type="text"
           autoFocus={isOpen}
           value={this.state.searchValue}
-          onFocus={this.open}
+          onFocus={this.toggle}
           placeholder={placeholder}
           onChange={event => this.setState({ searchValue: event.target.value })}
         />
@@ -137,7 +141,7 @@ class Select extends Component {
       <SelectWrapper className={className}>
         <InputWrapper
           tabIndex={0}
-          onClick={this.open}
+          onClick={this.toggle}
           onBlur={this.close}
         >
           {this.renderSelect()}
